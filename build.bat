@@ -6,10 +6,10 @@ setlocal enabledelayedexpansion
 cd dll
 
 set FILES=
-for /R %%f in (*.cpp) do (
+for /R %%f in (*.c) do (
     set FILES=!FILES! "%%f"
 )
-g++ !FILES! -shared -m64 -std=c++17 -o ../out/dll.dll > ../out/temp.txt 2>&1
+gcc !FILES! -shared -m64 -mwindows -std=c99 -o ../out/dll.dll > ../out/temp.txt 2>&1
 for /f %%a in ('echo prompt $E ^| cmd') do set "ESC=%%a"
 
 if %ERRORLEVEL% neq 0 (
@@ -27,10 +27,10 @@ setlocal enabledelayedexpansion
 cd loader
 
 set FILES=
-for /R %%f in (*.cpp) do (
+for /R %%f in (*.c) do (
     set FILES=!FILES! "%%f"
 )
-g++ !FILES! -m64 -std=c++17 -o ../out/loader.exe > ../out/temp.txt 2>&1
+gcc !FILES! -m64 -mwindows -std=c99 -o ../out/loader.exe > ../out/temp.txt 2>&1
 for /f %%a in ('echo prompt $E ^| cmd') do set "ESC=%%a"
 
 if %ERRORLEVEL% neq 0 (
