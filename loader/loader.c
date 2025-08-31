@@ -30,11 +30,11 @@ DWORD get_process_id(const char *processName) {
 }
 
 int try_inject() {
-  DWORD processId = get_process_id("Notepad.exe");
+  DWORD processId = get_process_id("javaw.exe");
 
   if (!processId) {
     log("Couldn't find process.");
-    return 0;
+    return 1;
   }
 
   char tempPath[MAX_PATH];
@@ -72,5 +72,5 @@ int try_inject() {
 
   log("Successfully injected.");
 
-  return 1;
+  return 0;
 }

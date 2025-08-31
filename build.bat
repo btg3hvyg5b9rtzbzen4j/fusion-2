@@ -9,7 +9,7 @@ set FILES=
 for /R %%f in (*.c) do (
     set FILES=!FILES! "%%f"
 )
-gcc !FILES! -shared -m64 -mwindows -std=c99 -o ../out/dll.dll > ../out/temp.txt 2>&1
+gcc !FILES! -shared -Iinclude -Llib -ljvm -m64 -mwindows -std=c99 -o ../out/dll.dll > ../out/temp.txt 2>&1
 for /f %%a in ('echo prompt $E ^| cmd') do set "ESC=%%a"
 
 if %ERRORLEVEL% neq 0 (

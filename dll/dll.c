@@ -1,10 +1,20 @@
-#include <windows.h>
+#include "dll.h"
+#include "java.h"
 
 DWORD WINAPI MainThread(LPVOID lpParam) {
   HINSTANCE hinstDLL = (HINSTANCE)lpParam;
 
-  MessageBoxA(NULL, "I have been loaded", "indeed", MB_OK);
+  AllocConsole();
+  FILE *f = NULL;
+  freopen_s(&f, "CONOUT$", "w", stdout);
+  ShowWindow(GetConsoleWindow(), SW_SHOW);
 
+  setup_jenv();
+
+  MessageBox(NULL, "Goodbye", "Ok", MB_OK);
+
+  FreeConsole();
+  fclose(f);
   FreeLibraryAndExitThread(hinstDLL, 0);
   return 0;
 }
